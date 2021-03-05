@@ -96,6 +96,7 @@ fn arg_enum_type(input: syn::DeriveInput) -> Result<TokenStream2> {
 
     let default_impl = if let Some(default_variant) = default_variant {
         quote! {
+            #[automatically_derived]
             impl Default for #ident {
                 fn default() -> Self {
                     #ident::#default_variant
@@ -137,7 +138,7 @@ fn arg_enum_type(input: syn::DeriveInput) -> Result<TokenStream2> {
 
         #[automatically_derived]
         impl #ident {
-            pub const fn possible_values() -> &'static[&'static str] {
+            pub const fn possible_values() -> &'static [&'static str] {
                 &[
                     #(#possible_values),*
                 ]
