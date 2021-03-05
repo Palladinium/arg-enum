@@ -18,8 +18,8 @@ enum Arg {
 
 #[derive(StructOpt)]
 struct Opt {
-    // The possible_values part cannot be automated by the macro
-    #[structopt(possible_values(Arg::possible_values()))]
+    // These structopt attributes cannot be automated by the macro, so it's still a little boilerplatey
+    #[structopt(default_value, possible_values(Arg::possible_values()))]
     arg: Arg,
 }
 
